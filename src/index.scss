@@ -7,14 +7,12 @@
 }
 
 html {
-	font-size: 62.5%; // 1rem = 10px
+	font-size: 62.5%; /* 1rem = 10px */
 	box-sizing: border-box;
 }
 
 body {
-	background: $pageBackgroundColor;
-	font-family: 'Do Hyeon', sans-serif;
-	color: #fff;
+	color: #4a4a4a;
 }
 
 a {
@@ -59,6 +57,7 @@ label {
 	flex-wrap: wrap;
 	justify-content: space-between;
 	width: 100%;
+	font-family: 'Open Sans', sans-serif;
 	&--item {
 		min-width: 30%;
 		height: 250px;
@@ -85,6 +84,12 @@ label {
 			border: 1px solid black;
 			padding: 0 25px;
 			text-transform: uppercase;
+
+			h1 {
+				font-size: 2.2rem;
+				margin-bottom: 6px;
+				
+			}
 		}
 	}
 }
