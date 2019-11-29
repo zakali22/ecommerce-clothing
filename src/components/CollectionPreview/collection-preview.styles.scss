@@ -1,0 +1,13 @@
+.collection-preview {
+	&__title {
+		margin-bottom: 2rem;
+		font-size: 2.8rem;
+	}
+	&__wrapper {
+		display: flex;
+		margin-bottom: 5rem;
+		& > *:not(:last-child){
+			margin-right: 3rem;
+		}
+	}
+}

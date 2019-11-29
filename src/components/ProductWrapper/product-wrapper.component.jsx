@@ -16,8 +16,8 @@ class ProductWrapper extends Component {
 	render(){
 		return (
 			<div className="product-wrapper">
-				{this.state.sections.map(({title, imageUrl, size, id}) => (
-					<ProductSection key={id} title={title} imageUrl={imageUrl} size={size}/>
+				{this.state.sections.map(({id, ...restOfProps }) => (
+					<ProductSection key={id} {...restOfProps}/>
 				))}
 			</div>
 		)
