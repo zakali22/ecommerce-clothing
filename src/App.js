@@ -1,25 +1,19 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {Switch, Route} from "react-router-dom"
 
-function App() {
+import Homepage from "./pages/Homepage/homepage.component.jsx"
+import ShopPage from "./pages/ShopPage/shop-page.component.jsx"
+import Layout from "./components/Layout/layout.component.jsx"
+
+// Here we define the routes and the corresponding components to render
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Switch>
+    	  <Layout>
+		      <Route exact path="/" component={Homepage} />
+		      <Route exact path="/shop" component={ShopPage} />
+	      </Layout>
+    </Switch>
   );
 }
 
