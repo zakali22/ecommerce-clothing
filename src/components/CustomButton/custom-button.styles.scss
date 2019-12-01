@@ -1,7 +1,7 @@
 @import "../../styles/variables";
 
 .custom-button {
-	padding: 1.5rem 10rem;
+	padding: 1.5rem 2rem;
 	font-size: 1.8rem;
 	cursor: pointer;
 	background: $grey;
@@ -12,7 +12,7 @@
 	font-weight: bold;
 	border: 2px solid transparent;
 	transition: all .2s ease-in-out;
-	width: 100%;
+	width: 50%;
 
 	&.third-party-button {
 		background: $lightBlue;
