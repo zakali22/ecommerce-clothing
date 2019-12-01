@@ -1,0 +1,27 @@
+@import "../../styles/variables";
+
+.custom-button {
+	padding: 1.5rem 10rem;
+	font-size: 1.8rem;
+	cursor: pointer;
+	background: $grey;
+	color: white;
+	text-transform: uppercase;
+	font-family: $mainFont;
+	letter-spacing: .1rem;
+	font-weight: bold;
+	border: 2px solid transparent;
+	transition: all .2s ease-in-out;
+	width: 100%;
+
+	&.third-party-button {
+		background: $lightBlue;
+		color: white;
+	}
+
+	&:hover {
+		background: white;
+		color: $grey;
+		border: 2px solid #2d2d2d;
+	}
+}
