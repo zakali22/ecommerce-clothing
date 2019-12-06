@@ -4,10 +4,12 @@ import "./signup.styles.scss"
 import FormInput from "../FormInput/form-input.component.jsx"
 import CustomButton from "../CustomButton/custom-button.component.jsx"
 
+import {auth, createUserOnDatabase} from "../../firebase/firebase.utils"
+
 const FORM_INPUTS = [
 	{
 		id: 1, 
-		name: 'display_name',
+		name: 'displayName',
 		type: 'text',
 		required: true,
 		label: 'Display name'
@@ -25,15 +27,23 @@ const FORM_INPUTS = [
 		type: 'password',
 		required: true,
 		label: 'Password'
+	},
+	{
+		id: 4,
+		name: 'confirm_password',
+		type: 'password',
+		required: true,
+		label: 'Confirm Password'
 	}
 	
 ]
 
 class SignUp extends React.Component {
 	state = {
-		display_name: '',
+		displayName: '',
 		email: '',
-		password: ''
+		password: '',
+		confirm_password: ''
 	}
 
 	onChangeHandler = e => {
@@ -43,14 +53,24 @@ class SignUp extends React.Component {
 		})
 	}
 
-	onSubmitHandler = e => {
+	onSubmitHandler = async (e) => {
 		e.preventDefault();
+		const {displayName, email, password, confirm_password} = this.state;
+
+		if(password !== confirm_password){
+			alert("Passwords don't match")
+		}
+
+		const {user} = await auth.createUserWithEmailAndPassword(email, password);
+		await createUserOnDatabase(user, {displayName})
 
 		this.setState({
-			name: '',
+			displayName: '',
 			email: '',
-			password: ''
+			password: '',
+			confirm_password: ''
 		})
+
 	}
 
 

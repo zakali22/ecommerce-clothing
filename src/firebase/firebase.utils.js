@@ -15,6 +15,33 @@ const config = {
 
 firebase.initializeApp(config)
 
+export const createUserOnDatabase = async (userAuth, otherParams) => {
+	if(!userAuth) return;
+
+	const userDoc = firestore.doc(`/user/${userAuth.uid}`);  // Fetches the documentReference for the given user allowing us to do CRUD
+	const snapShot = userDoc.get(); // To get the actual data of the user
+
+	if(!snapShot.exists){
+		const { displayName, email } = userAuth;
+		const createdAt = new Date();
+
+		try {
+			await userDoc.set({
+				displayName, 
+				email,
+				createdAt,
+				...otherParams
+			})
+		} catch(err){
+			console.log(err)
+		}
+	}
+
+	return userDoc;
+
+}
+
+
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
