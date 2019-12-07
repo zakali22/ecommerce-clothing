@@ -28,7 +28,7 @@ componentDidMount(){
 						...snapshot.data() // To access the actual data set in our database
 					}
 				}, () => {
-					console.log(this.state.currentUser)
+					console.log(this.state)
 				})
 			})
 		} else {
