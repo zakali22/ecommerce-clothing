@@ -1,9 +1,10 @@
 import {cartActionTypes} from "./cart.types"
-import {addItemToCart} from "./cart.utils"
+import {addItemToCart, incrementTotal} from "./cart.utils"
 
 const INITIAL_STATE = {
 	openDropdown: false,
-	cartItems: []
+	cartItems: [],
+	// totalItems: 0
 }
 
 export default function(state = INITIAL_STATE, action){
@@ -14,10 +15,11 @@ export default function(state = INITIAL_STATE, action){
 				openDropdown: !state.openDropdown
 			}
 		case cartActionTypes.ADD_ITEM_TO_CART:
-			console.log(state.cartItems, action.payload.id, action.payload.cartItem)
+			console.log(state.cartItems, action.payload.cartItem)
 			return {
 				...state, 
-				cartItems: addItemToCart(state.cartItems, action.payload.cartItem)
+				cartItems: addItemToCart(state.cartItems, action.payload.cartItem),
+				// totalItems: incrementTotal(state.totalItems)
 			}
 		default: 
 			return state

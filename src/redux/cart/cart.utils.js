@@ -16,3 +16,7 @@ export const addItemToCart = (cartArr, cartItem) => {
 
 	return [...cartArr, {...cartItem, quantity: 1}]
 }
+
+// export const incrementTotal = (cartTotal) => {
+// 	return cartTotal + 1;
+// }

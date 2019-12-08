@@ -5,11 +5,11 @@ import {openCartDropdown} from "../../redux/cart/cart.actions"
 
 import "./cart-icon.styles.scss"
 
-const CartIcon = ({openCartDropdown}) => (
+const CartIcon = ({openCartDropdown, totalItems}) => (
 	<div className="cart-icon" onClick={openCartDropdown}>
 		<ShoppingBag className="cart-icon__svg"/>
 		<div className="cart-icon__num">
-			0
+			{totalItems}
 		</div>
 	</div>
 )
@@ -18,4 +18,10 @@ const mapDispatchToProps = dispatch => ({
 	openCartDropdown: () => dispatch(openCartDropdown())
 })
 
-export default connect(null, mapDispatchToProps)(CartIcon)
+const mapStateToProps = (state) => ({
+	totalItems: state.cart.cartItems.reduce((accNum, cartItem) => {
+		return accNum + cartItem.quantity
+	}, 0)
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(CartIcon)
