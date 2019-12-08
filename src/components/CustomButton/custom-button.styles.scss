@@ -19,6 +19,19 @@
 		color: white;
 	}
 
+	&.checkout-button {
+		width: 100%;
+		background: white;
+		color: $grey;
+		border: 2px solid #2d2d2d;
+		text-transform: uppercase;
+
+		&:hover {
+			background: $grey;
+			color: white;
+		}
+	}
+
 	&:hover {
 		background: white;
 		color: $grey;
