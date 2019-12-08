@@ -7,7 +7,7 @@ const CollectionPreview = ({title, items, routeName}) => (
 		<h1 className="collection-preview__title">{title}</h1>
 		<div className="collection-preview__wrapper">
 			{items.slice(0, 4).map(({id, ...restOfProps}) => (
-				<CollectionItem key={id} {...restOfProps} />
+				<CollectionItem key={id} id={id} {...restOfProps} />
 			))}
 		</div>
 	</div>
