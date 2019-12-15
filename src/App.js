@@ -4,6 +4,7 @@ import {Switch, Route, Redirect} from "react-router-dom"
 import Homepage from "./pages/Homepage/homepage.component.jsx"
 import ShopPage from "./pages/ShopPage/shop-page.component.jsx"
 import SigninAndSignupPage from "./pages/SigninPage/signin-signup.component.jsx"
+import Checkout from "./pages/Checkout/checkout.component.jsx"
 import Layout from "./components/Layout/layout.component.jsx"
 
 import {connect} from "react-redux"
@@ -44,6 +45,7 @@ class App extends React.Component {
 			      <Route exact path="/signin" render={(renderProps) => {
 			      	return this.props.currentUser ? <Redirect to="/" /> : <SigninAndSignupPage />
 			      }} />
+			      <Route exact path="/checkout" component={Checkout} />
 		      </Layout>
 	    </Switch>
 	  )
