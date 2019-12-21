@@ -1,12 +1,12 @@
 import React from "react"
 import {ReactComponent as ShoppingBag} from "../../images/shopping-bag.svg"
 import {connect} from "react-redux"
-import {openCartDropdown} from "../../redux/cart/cart.actions"
+import {toggleCartDropdown} from "../../redux/cart/cart.actions"
 
 import "./cart-icon.styles.scss"
 
-const CartIcon = ({openCartDropdown, totalItems}) => (
-	<div className="cart-icon" onClick={openCartDropdown}>
+const CartIcon = ({toggleCartDropdown, totalItems}) => (
+	<div className="cart-icon" onClick={toggleCartDropdown}>
 		<ShoppingBag className="cart-icon__svg"/>
 		<div className="cart-icon__num">
 			{totalItems}
@@ -15,7 +15,7 @@ const CartIcon = ({openCartDropdown, totalItems}) => (
 )
 
 const mapDispatchToProps = dispatch => ({
-	openCartDropdown: () => dispatch(openCartDropdown())
+	toggleCartDropdown: () => dispatch(toggleCartDropdown())
 })
 
 const mapStateToProps = (state) => ({

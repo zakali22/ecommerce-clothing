@@ -17,6 +17,23 @@ export const addItemToCart = (cartArr, cartItem) => {
 	return [...cartArr, {...cartItem, quantity: 1}]
 }
 
-// export const incrementTotal = (cartTotal) => {
-// 	return cartTotal + 1;
-// }
+
+export const removeItemFromCart = (cartArr, cartItem) => {
+	const cartItemExist = cartArr.find(el => {
+		return el.id === cartItem.id
+	}) // This actually returns the object found
+
+	if(cartItemExist.quantity === 1){
+		return cartArr.filter(el => (
+			el.id !== cartItemExist.id
+		))
+	} else {
+		return cartArr.map(el => (
+			el.id === cartItemExist.id ? {
+				...el, 
+				quantity: el.quantity - 1
+			} : el
+		))
+	}
+
+}

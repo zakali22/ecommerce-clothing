@@ -18,20 +18,6 @@ class Header extends React.Component {
 		this.headerRef = React.createRef();
 	}
 
-	// componentDidMount(){
-	// 	const headroom = new Headroom(this.headerRef.current, {
-	// 	  "offset": 205,
-	// 	  "tolerance": 5,
-	// 	  "classes": {
-	// 	    "initial": "animated",
-	// 	    "pinned": "slideDown",
-	// 	    "unpinned": "slideUp"
-	// 		}
-	// 	});
-
-	// 	headroom.init();
-	// }
-
 	render(){
 		return (
 			<Headroom>

@@ -6,6 +6,7 @@ import "./cart-dropdown.styles.scss"
 
 import {connect} from "react-redux"
 import {withRouter} from "react-router-dom"
+import {toggleCartDropdown} from "../../redux/cart/cart.actions"
 
 const CartDropdown = (props) => (
 	<div className="cart-dropdown">
@@ -18,7 +19,14 @@ const CartDropdown = (props) => (
 			<span className="cart-dropdown__empty">There are no items in the cart</span>
 		}	
 		</div>
-		<CustomButton type="checkout-button" title="Go to Checkout" onClickHandler={() => props.history.push("/checkout")}/>
+		<CustomButton 
+			type="checkout-button" 
+			title="Go to Checkout" 
+			onClickHandler={() => {
+				props.history.push("/checkout")
+				props.dispatch(toggleCartDropdown())
+			}}
+			/>
 	</div>
 )
 
