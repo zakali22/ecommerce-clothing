@@ -2,7 +2,7 @@ import React from "react"
 import CollectionItem from "../CollectionItem/collection-item.component.jsx"
 import "./collection-preview.styles.scss"
 
-const CollectionPreview = ({title, items, routeName}) => (
+const CollectionPreview = ({title, items}) => (
 	<div className="collection-preview">
 		<h1 className="collection-preview__title">{title}</h1>
 		<div className="collection-preview__wrapper">

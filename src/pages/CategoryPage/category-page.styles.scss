@@ -1,0 +1,12 @@
+.category-page {
+	display: flex;
+	flex-wrap: wrap;
+	& > * {
+		width: 25%;
+		margin-bottom: 5rem;
+		flex: 0 1 auto;
+	}
+	& > *:not(:nth-of-type(4n)){
+		padding-right: 3rem;
+	}
+}
