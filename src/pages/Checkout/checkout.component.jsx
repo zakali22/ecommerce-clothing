@@ -2,7 +2,7 @@ import React from "react"
 import CustomButton from "../../components/CustomButton/custom-button.component.jsx"
 import {connect} from "react-redux"
 import {withRouter} from "react-router-dom"
-import {addItemToCart, removeItemFromCart, removeProduct} from "../../redux/cart/cart.actions"
+import {addItemToCart, removeItemFromCart, removeProduct, getTotalBalanceInCart} from "../../redux/cart/cart.actions"
 
 import "./checkout.styles.scss"
 
@@ -27,10 +27,14 @@ const Checkout = (props) => {
 										<div className="checkout__products-list--product__quantity">
 											<span onClick={() => props.removeItemFromCart({id, name, quantity, imageUrl, price})}>&lt;</span>
 											<p>{quantity}</p>
-											<span onClick={() => props.addItemToCart({id, name, quantity, imageUrl, price})}>&gt;</span>
+											<span onClick={() => {
+												props.addItemToCart({id, name, quantity, imageUrl, price})
+											}}>&gt;</span>
 										</div>
 										<h2>${price * quantity}</h2>
-										<span onClick={() => props.removeProduct({id, name, quantity, imageUrl, price})}>&#10005;</span>
+										<span onClick={() => {
+											props.removeProduct({id, name, quantity, imageUrl, price})
+										}}>&#10005;</span>
 									</div>
 								))
 							) : (
@@ -47,9 +51,18 @@ const Checkout = (props) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-	addItemToCart: (cartItem) => dispatch(addItemToCart(cartItem)),
-	removeItemFromCart: (cartItem) => dispatch(removeItemFromCart(cartItem)),
-	removeProduct: (cartItem) => dispatch(removeProduct(cartItem))
+	addItemToCart: (cartItem) => {
+		dispatch(addItemToCart(cartItem))
+		dispatch(getTotalBalanceInCart())
+	},
+	removeItemFromCart: (cartItem) => {
+		dispatch(removeItemFromCart(cartItem))
+		dispatch(getTotalBalanceInCart())
+	},
+	removeProduct: (cartItem) => {
+		dispatch(removeProduct(cartItem))
+		dispatch(getTotalBalanceInCart())
+	},
 })
 
 const mapStateToProps = ({cart: {cartItems}}) => ({

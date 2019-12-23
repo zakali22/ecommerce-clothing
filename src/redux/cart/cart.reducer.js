@@ -1,10 +1,10 @@
 import {cartActionTypes} from "./cart.types"
-import {addItemToCart, removeItemFromCart, incrementTotal} from "./cart.utils"
+import {addItemToCart, removeItemFromCart, calculateTotal} from "./cart.utils"
 
 const INITIAL_STATE = {
 	openDropdown: false,
 	cartItems: [],
-	// totalItems: 0
+	totalInCart: 0
 }
 
 export default function(state = INITIAL_STATE, action){
@@ -31,6 +31,11 @@ export default function(state = INITIAL_STATE, action){
 				cartItems: state.cartItems.filter(item => {
 					return item.id !== action.payload.cartItem.id
 				})
+			}
+		case cartActionTypes.GET_TOTAL_BALANCE_CART: 
+			return {
+				...state,
+				totalInCart: calculateTotal(state.cartItems)
 			}
 		default: 
 			return state

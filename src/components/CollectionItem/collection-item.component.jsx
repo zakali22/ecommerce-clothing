@@ -1,7 +1,7 @@
 import React from "react"
 import CustomButton from "../CustomButton/custom-button.component.jsx"
 
-import {addItemToCart, toggleCartDropdown} from "../../redux/cart/cart.actions"
+import {addItemToCart, toggleCartDropdown, getTotalBalanceInCart} from "../../redux/cart/cart.actions"
 import {connect} from "react-redux"
 
 import "./collection-item.styles.scss"
@@ -19,7 +19,7 @@ const CollectionItem = ({id, name, imageUrl, price, ...restOfProps}) => {
 						onClickHandler={() => {
 							console.log("Clicked")
 							restOfProps.addItemToCart(cartItem)
-							{/*restOfProps.toggleCartDropdown()*/}
+							restOfProps.getTotalBalanceInCart()
 						}}
 						/>
 				</div>
@@ -34,7 +34,8 @@ const CollectionItem = ({id, name, imageUrl, price, ...restOfProps}) => {
 
 const mapDispatchToProps = dispatch => ({
 	addItemToCart: (cartItem) => dispatch(addItemToCart(cartItem)),
-	toggleCartDropdown: () => dispatch(toggleCartDropdown())
+	toggleCartDropdown: () => dispatch(toggleCartDropdown()),
+	getTotalBalanceInCart: () => dispatch(getTotalBalanceInCart())
 })
 
 export default connect(null, mapDispatchToProps)(CollectionItem)

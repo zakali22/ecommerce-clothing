@@ -28,3 +28,7 @@ export const removeProduct = cartItem => ({
 		cartItem
 	}
 })
+
+export const getTotalBalanceInCart = () => ({
+	type: cartActionTypes.GET_TOTAL_BALANCE_CART
+})

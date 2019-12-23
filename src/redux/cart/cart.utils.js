@@ -37,3 +37,14 @@ export const removeItemFromCart = (cartArr, cartItem) => {
 	}
 
 }
+
+export const calculateTotal = (cartArr) => {
+	return cartArr.map((cartEl) => {
+	  return {
+	    price: cartEl.price,
+	    quantity: cartEl.quantity
+	  }
+	}).reduce((accumulateQuantity, cartEl) => {
+	    return accumulateQuantity + (cartEl.price * cartEl.quantity)
+	}, 0)
+}
