@@ -1,0 +1,22 @@
+.cart-dropdown__item {
+		display: flex;
+		align-items: center;
+		padding-right: 20px;
+		&:not(:last-of-type){
+			margin-bottom: 20px;
+		}
+
+		img {
+			width: 150px;
+			height: 150px;
+			object-fit: cover;
+			margin-right: 20px;
+		}
+
+		&--data {
+			p {
+				font-weight: bold;
+				font-size: 2rem;
+			}
+		}
+	}

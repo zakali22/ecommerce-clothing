@@ -1,0 +1,21 @@
+.category-page {
+	display: flex;
+	flex-direction: column;
+	&__title {
+		align-self: center;
+		font-size: 5rem;
+		margin-bottom: 3rem;
+	}
+	&__wrapper {
+		display: flex;
+		flex-wrap: wrap;
+		& > * {
+			width: 25%;
+			margin-bottom: 5rem;
+			flex: 0 1 auto;
+		}
+		& > *:not(:nth-of-type(4n)){
+			padding-right: 3rem;
+		}
+	}
+}

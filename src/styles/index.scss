@@ -1,5 +1,4 @@
-// Variables 
-$mainFont: 'Open Sans Condensed', sans-serif;
+@import "./variables";
 
 *, 
 *::before, 
@@ -17,7 +16,7 @@ html {
 
 body {
 	color: #4a4a4a;
-	font-family: 'Open Sans Condensed', sans-serif;
+	font-family: $mainFont;
 	padding: 2rem 5rem;
 }
 
@@ -46,12 +45,11 @@ h5, h6, .h5, .h6 {
 	font-size: 1rem;
 }
 
-p {
+p, li {
 	font-size: 1.6rem;
 }
 
 label {
 	font-size: 3rem;
 }
-
 

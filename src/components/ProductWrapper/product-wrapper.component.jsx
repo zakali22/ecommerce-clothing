@@ -1,28 +1,22 @@
-import React, {Component} from "react"
-import sectionData from "../../jsonData/section-item"
+import React from "react"
 import ProductSection from "../ProductSection/product-section.component"
+
+import {connect} from "react-redux"
 
 import "./product-wrapper.styles.scss"
 
-class ProductWrapper extends Component {
-	constructor(){
-		super();
-
-		this.state = {
-			sections: sectionData
-		}
-	}
-
-	render(){
-		return (
-			<div className="product-wrapper">
-				{this.state.sections.map(({id, ...restOfProps }) => (
-					<ProductSection key={id} {...restOfProps}/>
-				))}
-			</div>
-		)
-	}
+const ProductWrapper = ({sections}) => {
+	return (
+		<div className="product-wrapper">
+			{sections.map(({id, ...restOfProps }) => (
+				<ProductSection key={id} {...restOfProps}/>
+			))}
+		</div>
+	)
 }
 
+const mapStateToProps = ({directory: {sections}}) => ({
+	sections
+})
 
-export default ProductWrapper
+export default connect(mapStateToProps)(ProductWrapper)

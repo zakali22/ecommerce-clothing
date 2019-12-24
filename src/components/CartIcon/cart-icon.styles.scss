@@ -1,0 +1,22 @@
+.cart-icon {
+	position: relative;
+	height: 45px;
+	width: 45px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+
+	&__svg {
+		height: 30px;
+		width: 30px;
+	}
+
+	&__num {
+		position: absolute;
+		bottom: 11px;
+		font-weight: bold;
+		font-size: 1rem;
+	}
+}

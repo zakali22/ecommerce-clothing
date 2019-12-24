@@ -17,26 +17,19 @@
 		align-items: flex-end;
 		&:hover {
 			.collection-item__button {
-				opacity: 0.7;
-				transform: translateX(0);
+				opacity: 1;
+				transform: translateY(0);
 			}
 		}
 	}
 	&__button {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		background: white;
-		margin: 0 3rem 2rem;
-		font-size: 2rem;
-		padding: 1.5rem 0;
-		width: 100%;
-		text-transform: uppercase;
-		font-weight: bold;
+		width: 80%;
+		margin: 0 auto;
 		opacity: 0;
-		transform: translateY(100%);
-		transition: all 0.3s ease;
-		cursor: pointer;
+		transform: translateY(10px);
+		transition: all .5s ease;
+		margin-bottom: 10px;
+
 	}
 	&__details {
 		display: flex;
