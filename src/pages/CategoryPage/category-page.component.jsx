@@ -9,9 +9,12 @@ const CategoryPage = ({collections, match }) => {
 		collections.map(category => (
 			category.routeName === match.params.category ? (
 				<div className="category-page" key={category.id}>
+					<h1 className="category-page__title">{category.title}</h1>
+					<div className="category-page__wrapper">
 					{category.items.map(({id, ...restOfProps}) => (
 						<CollectionItem key={id} id={id} {...restOfProps} />
 					))}
+					</div>
 				</div>
 			) : null
 		))
