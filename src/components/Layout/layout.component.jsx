@@ -3,7 +3,7 @@ import Header from "../Header/header.component.jsx"
 
 const Layout = (props) => (
 	<div className="layout">
-		<Header />
+		<Header currentUser={props.currentUser}/>
 		{props.children}
 	</div>
 )

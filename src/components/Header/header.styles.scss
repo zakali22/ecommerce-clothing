@@ -3,6 +3,12 @@
 	padding: 2rem 0;
 	display: flex;
 	align-items: center;
+	position: relative;
+
+	.headroom--pinned & {
+		padding: 2rem 5rem;
+		background: white;
+	}
 
 	&__logo {
 		margin-right: auto;
