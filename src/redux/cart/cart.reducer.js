@@ -14,6 +14,11 @@ export default function(state = INITIAL_STATE, action){
 				...state,
 				openDropdown: !state.openDropdown
 			}
+		case cartActionTypes.CLOSE_CART_DROPDOWN:
+			return {
+				...state, 
+				openDropdown: false
+			}
 		case cartActionTypes.ADD_ITEM_TO_CART:
 			return {
 				...state, 

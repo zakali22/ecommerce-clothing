@@ -7,8 +7,10 @@ import Headroom from "react-headroom"
 
 import {auth} from "../../firebase/firebase.utils"
 import {connect} from "react-redux"
+import {toggleCartDropdown} from "../../redux/cart/cart.actions"
 
-import "./header.styles.scss"
+// import "./header.styles.scss"
+import {HeaderContainer, LogoContainer, NavListContainer, NavListElement} from "./header.styles.jsx"
 
 
 class Header extends React.Component {
@@ -18,28 +20,32 @@ class Header extends React.Component {
 		this.headerRef = React.createRef();
 	}
 
+	componentDidMount(){
+		this.props.dispatch(toggleCartDropdown())
+	}
+
 	render(){
 		return (
 			<Headroom>
-				<nav className="header" ref={this.headerRef}>
-					<Link to="/" className="header__logo">
+				<HeaderContainer className="header" ref={this.headerRef}>
+					<LogoContainer to="/" className="header__logo">
 						<Logo />
-					</Link>
-					<ul className="header__list">
-						<li><Link to={`/shop`}>{`shop`.toUpperCase()}</Link></li>
-						<li><Link to={`/contact`}>{`contact`.toUpperCase()}</Link></li>
+					</LogoContainer>
+					<NavListContainer className="header__list">
+						<NavListElement><Link to={`/shop`}>{`shop`.toUpperCase()}</Link></NavListElement>
+						<NavListElement><Link to={`/contact`}>{`contact`.toUpperCase()}</Link></NavListElement>
 						{this.props.currentUser ? 
 							(
 								<>
-									<li onClick={() => auth.signOut()}>{`signout`.toUpperCase()}</li>
+									<NavListElement onClick={() => auth.signOut()}>{`signout`.toUpperCase()}</NavListElement>
 									<CartIcon />
 								</>
 							) : 
-							<li><Link to={`/signin`}>{`signin`.toUpperCase()}</Link></li>
+							<NavListElement><Link to={`/signin`}>{`signin`.toUpperCase()}</Link></NavListElement>
 						}
-					</ul>
+					</NavListContainer>
 					{this.props.openDropdown ? <CartDropdown /> : null}
-				</nav>
+				</HeaderContainer>
 			</Headroom>
 		)
 	}
