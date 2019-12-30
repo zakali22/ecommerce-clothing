@@ -41,6 +41,19 @@ export const createUserOnDatabase = async (userAuth, otherParams) => {
 
 }
 
+// Function that can be used to create new Documents in the future
+export const addCollectionsAndDocuments = (collectionKey, objectToAdd) => {
+	const collectionRef = firestore.collection(collectionKey)
+	const batch = firestore.batch();
+
+	objectToAdd.forEach(obj => {
+		const newDoc = collectionRef.doc();
+		batch.set(newDoc, obj)
+	})
+
+	batch.commit();
+}
+
 
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
