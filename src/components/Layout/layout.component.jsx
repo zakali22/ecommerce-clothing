@@ -5,8 +5,15 @@ import {connect} from "react-redux"
 
 const Layout = (props) => (
 	<div className="layout" onClick={e => {
-		console.log(e.target.parentElement.className.includes('cart-icon') )
-		return !e.target.parentElement.className.includes('cart-icon') ? props.closeCartDropdown() : null
+		console.log(typeof e.target.parentElement.className === 'object')
+		if(typeof e.target.parentElement.className !== 'object'){
+			if(!e.target.parentElement.className.includes('cart-icon')){
+				props.closeCartDropdown()
+			}
+		} else {
+			props.closeCartDropdown()
+		}
+		// return e.target.parentElement.className ? (!e.target.parentElement.className.includes('cart-icon') ? props.closeCartDropdown() : null) : null
 	}}>
 		<Header currentUser={props.currentUser}/>
 		{props.children}
