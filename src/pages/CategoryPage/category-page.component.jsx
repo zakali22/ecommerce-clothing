@@ -4,10 +4,11 @@ import {connect} from "react-redux"
 
 import "./category-page.styles.scss"
 
-const CategoryPage = ({collections, match }) => {
+const CategoryPage = (props) => {
+	console.log(props)
 	return (
-		collections.map(category => (
-			category.routeName === match.params.category ? (
+		props.collections.map(category => (
+			category.routeName === props.match.params.category ? (
 				<div className="category-page" key={category.id}>
 					<h1 className="category-page__title">{category.title}</h1>
 					<div className="category-page__wrapper">
