@@ -7,15 +7,36 @@ const theme = require('sass-extract-loader?{"plugins": ["sass-extract-js"]}!../.
 console.log(theme)
 
 
-const Spinner = WrappedComponent => ({isLoading, ...otherProps}) => (
-	isLoading ? (
-		<ThemeProvider theme={theme}>
-			<SpinnerWrapper>
-				<SpinnerContainer />
-			</SpinnerWrapper>
-		</ThemeProvider>
-	) : <WrappedComponent {...otherProps} />
-)
+// const Spinner = WrappedComponent => ({isLoading, ...otherProps}) => (
+// 	isLoading ? (
+// 		<ThemeProvider theme={theme}>
+// 			<SpinnerWrapper>
+// 				<SpinnerContainer />
+// 			</SpinnerWrapper>
+// 		</ThemeProvider>
+// 	) : <WrappedComponent {...otherProps} />
+// )
 
 
-export default Spinner;
+const SpinnerHOC = (WrappedComponent) => {
+	const withSpinner = (props) => {
+		const {isLoading, ...otherProps} = props;
+		console.log(otherProps)
+		return (
+			isLoading ? (
+				<ThemeProvider theme={theme}>
+					<SpinnerWrapper>
+						<SpinnerContainer />
+					</SpinnerWrapper>
+				</ThemeProvider>			
+			) : 
+			<WrappedComponent {...otherProps} /> 
+		)
+	}
+
+	return withSpinner
+}
+
+
+
+export default SpinnerHOC;

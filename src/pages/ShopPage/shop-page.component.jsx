@@ -4,48 +4,27 @@ import CategoryPage from "../CategoryPage/category-page.component.jsx"
 import {Route} from "react-router-dom"
 import {firestore, convertCollectionToMap} from "../../firebase/firebase.utils"
 import {connect} from "react-redux"
-import {setCollectionsToStore} from "../../redux/collections/collections.actions"
-import SpinnerHOC from "../../components/SpinnerHOC/spinner-hoc.component.jsx"
+import {fetchCollectionStartAsync} from "../../redux/collections/collections.actions"
 
 import "./shop-page.styles.scss"
 
-
-// Wrap the Child components with the Spinner
-const CollectionOverviewWithSpinner = SpinnerHOC(CollectionOverview);
-const CategoryPageWithSpinner = SpinnerHOC(CategoryPage)
-
 class ShopPage extends React.Component {
-	state = {
-		isLoading: true
-	}
-
-
-	unsubscribeFromSnapshot = null; // A variable that we need to set when fetching data from Firebase, which we will call when componentWillUnmount()
-
 	componentDidMount(){
-		const collectionRef = firestore.collection('collections');
-		collectionRef.onSnapshot(async (snapshot) => {
-			const collectionConverted = convertCollectionToMap(snapshot)
-			let collectionArr = [];
-			for(let collection in collectionConverted){
-				collectionArr.push(collectionConverted[collection])
-			}
-
-			this.props.setCollectionsToStore(collectionArr)
-			this.setState({
-				isLoading: false
-			})
-		})
+		this.props.fetchCollectionStartAsync();
 	}
 
 	render(){
 		return (
 			<div className="shop-page">
 				<Route exact path={`${this.props.match.path}`} render={(props) => {
-					return <CollectionOverviewWithSpinner isLoading={this.state.isLoading} {...props} />
+					return <CollectionOverview isLoading={!!this.props.collections} {...props} />
 				}} />
 				<Route exact path={`${this.props.match.path}/:category`} render={(props) => {
-					return <CategoryPageWithSpinner {...props} isLoading={this.state.isLoading}  />
+					return <CategoryPage {...props} isLoading={() => {
+						console.log(this.props.collections)
+						return !!this.props.collections
+
+					}}  />
 				}} />
 			</div>
 		)
@@ -53,7 +32,12 @@ class ShopPage extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-	setCollectionsToStore: (collections) => dispatch(setCollectionsToStore(collections))
+	fetchCollectionStartAsync: () => dispatch(fetchCollectionStartAsync())
 })
 
-export default connect(null, mapDispatchToProps)(ShopPage)
+const mapStateToProps = state => ({
+	isFetching: state.collections.isFetching,
+	collections: state.collections.collections
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(ShopPage)

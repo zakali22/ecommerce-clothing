@@ -1,6 +1,7 @@
 import React from "react"
 import CollectionItem from "../../components/CollectionItem/collection-item.component.jsx"
 import {connect} from "react-redux"
+import SpinnerHOC from "../../components/SpinnerHOC/spinner-hoc.component.jsx"
 
 import "./category-page.styles.scss"
 
@@ -22,8 +23,8 @@ const CategoryPage = (props) => {
 	)
 }
 
-const mapStateToProps = ({collections}) => ({
-	collections
+const mapStateToProps = state => ({
+	collections: state.collections.collections
 })
 
-export default connect(mapStateToProps)(CategoryPage)
+export default connect(mapStateToProps)(SpinnerHOC(CategoryPage))

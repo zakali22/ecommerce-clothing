@@ -17,7 +17,7 @@ class CartDropdown extends Component {
 
 	render(){	
 		return (	
-			<CartDropdownContainer>
+			<CartDropdownContainer className="cart-dropdown">
 				<CartDropdownWrapper className={`${!this.props.cartItems.length ? 'empty' : null}`}>
 				{this.props.cartItems.length ? 
 					this.props.cartItems.map(cartItem => (

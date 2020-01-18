@@ -7,6 +7,17 @@ export const HeaderContainer = styled.nav`
 	display: flex;
 	align-items: center;
 	position: relative;
+
+	.headroom--pinned & {
+		padding: 2rem 5rem;
+		background: white;
+ 	}
+
+ 	.headroom--scrolled {
+ 		.cart-dropdown {
+ 			display: none
+ 		}
+ 	}
 `;
 
 export const LogoContainer = styled(Link)`

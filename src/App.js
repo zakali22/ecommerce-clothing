@@ -9,7 +9,7 @@ import Layout from "./components/Layout/layout.component.jsx"
 
 import {connect} from "react-redux"
 import {setCurrentUser} from "./redux/user/user.actions"
-import {auth, createUserOnDatabase } from "./firebase/firebase.utils"
+import {auth, createUserOnDatabase, addCollectionsAndDocuments } from "./firebase/firebase.utils"
 
 // Here we define the routes and the corresponding components to render
 class App extends React.Component {
@@ -17,6 +17,7 @@ class App extends React.Component {
 	unsubscribeFromAuth = null;
 
 	componentDidMount(){
+		console.log("Load App")
 		this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
 			if(userAuth){ // Check that user is not logged out
 				const userRef = await createUserOnDatabase(userAuth);  // Register the user on our firebase database
