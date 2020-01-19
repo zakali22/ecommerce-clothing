@@ -2,17 +2,38 @@ import React from "react"
 import CollectionOverview from "../../components/CollectionOverview/collection-overview.component.jsx"
 import CategoryPage from "../CategoryPage/category-page.component.jsx"
 import {Route} from "react-router-dom"
+import {firestore, convertCollectionToMap} from "../../firebase/firebase.utils"
+import {connect} from "react-redux"
+import {fetchCollectionStartAsync} from "../../redux/collections/collections.actions"
 
 import "./shop-page.styles.scss"
 
-const ShopPage = ({match}) => {
-	console.log(match.path)
-	return (
-		<div className="shop-page">
-			<Route exact path={`${match.path}`} component={CollectionOverview} />
-			<Route exact path={`${match.path}/:category`} component={CategoryPage} />
-		</div>
-	)
+class ShopPage extends React.Component {
+	componentDidMount(){
+		this.props.fetchCollectionStartAsync();
+	}
+
+	render(){
+		return (
+			<div className="shop-page">
+				<Route exact path={`${this.props.match.path}`} render={(props) => {
+					return <CollectionOverview {...props} isLoading={!(!!this.props.collections)}  />
+				}} />
+				<Route exact path={`${this.props.match.path}/:category`} render={(props) => {
+					return <CategoryPage {...props} isLoading={!(!!this.props.collections)}  />
+				}} />
+			</div>
+		)
+	}
 }
 
-export default ShopPage
+const mapDispatchToProps = dispatch => ({
+	fetchCollectionStartAsync: () => dispatch(fetchCollectionStartAsync())
+})
+
+const mapStateToProps = state => ({
+	isFetching: state.collections.isFetching,
+	collections: state.collections.collections
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(ShopPage)

@@ -1,12 +1,13 @@
 import React from "react"
 import ProductWrapper from "../../components/ProductWrapper/product-wrapper.component"
 
-import './homepage.styles.scss'
+// import './homepage.styles.scss'
+import { HomepageContainer } from "./homepage.styles.jsx"
 
 const Homepage = () => (
-	<div className="homepage">
+	<HomepageContainer>
 		<ProductWrapper />
-	</div>
+	</HomepageContainer>
 )
 
 export default Homepage

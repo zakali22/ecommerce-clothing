@@ -1,13 +1,15 @@
 import React from "react"
 import CollectionItem from "../../components/CollectionItem/collection-item.component.jsx"
 import {connect} from "react-redux"
+import SpinnerHOC from "../../components/SpinnerHOC/spinner-hoc.component.jsx"
 
 import "./category-page.styles.scss"
 
-const CategoryPage = ({collections, match }) => {
+const CategoryPage = (props) => {
+	console.log(props)
 	return (
-		collections.map(category => (
-			category.routeName === match.params.category ? (
+		props.collections.map(category => (
+			category.routeName === props.match.params.category ? (
 				<div className="category-page" key={category.id}>
 					<h1 className="category-page__title">{category.title}</h1>
 					<div className="category-page__wrapper">
@@ -21,8 +23,8 @@ const CategoryPage = ({collections, match }) => {
 	)
 }
 
-const mapStateToProps = ({collections}) => ({
-	collections
+const mapStateToProps = state => ({
+	collections: state.collections.collections
 })
 
-export default connect(mapStateToProps)(CategoryPage)
+export default connect(mapStateToProps)(SpinnerHOC(CategoryPage))

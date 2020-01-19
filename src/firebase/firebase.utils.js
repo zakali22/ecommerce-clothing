@@ -3,15 +3,15 @@ import "firebase/firestore"
 import "firebase/auth"
 
 const config = {
-    apiKey: "AIzaSyCm8Rdxxo5qp0HBEO1yVQvXM0GWOKSBvu0",
-    authDomain: "ecommerce-clothing-dd7b3.firebaseapp.com",
-    databaseURL: "https://ecommerce-clothing-dd7b3.firebaseio.com",
-    projectId: "ecommerce-clothing-dd7b3",
-    storageBucket: "ecommerce-clothing-dd7b3.appspot.com",
-    messagingSenderId: "4393129753",
-    appId: "1:4393129753:web:3099b1ed4250c7f26a5788",
-    measurementId: "G-SXYJ23C060"
-};
+    apiKey: "AIzaSyBdVWWWjOJFNPkaE2RnUV9nv2_1v33i2Ec",
+    authDomain: "ecommerce-clothing-dev.firebaseapp.com",
+    databaseURL: "https://ecommerce-clothing-dev.firebaseio.com",
+    projectId: "ecommerce-clothing-dev",
+    storageBucket: "ecommerce-clothing-dev.appspot.com",
+    messagingSenderId: "251476737408",
+    appId: "1:251476737408:web:4a549b0412a13f03691565",
+    measurementId: "G-K3ST676996"
+  };;
 
 firebase.initializeApp(config)
 
@@ -38,6 +38,38 @@ export const createUserOnDatabase = async (userAuth, otherParams) => {
 	}
 
 	return userDoc;
+
+}
+
+// Function that can be used to create new Documents in the future
+export const addCollectionsAndDocuments = (collectionKey, objectToAdd) => {
+	const collectionRef = firestore.collection(collectionKey)
+	const batch = firestore.batch();
+
+	objectToAdd.forEach(obj => {
+		const newDoc = collectionRef.doc();
+		batch.set(newDoc, obj)
+	})
+
+	batch.commit();
+}
+
+export const convertCollectionToMap = (collection) => {
+	const transformedCollection = collection.docs.map(doc => {
+		const {title, items} = doc.data();
+
+		return {
+			id: doc.id, 
+			routeName: encodeURI(title.toLowerCase()),
+			title, 
+			items
+		}
+	})
+
+	return transformedCollection.reduce((accumulator, collection) => {
+		accumulator[collection.title.toLowerCase()] = collection;
+		return accumulator
+	}, {})
 
 }
 
