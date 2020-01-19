@@ -21,7 +21,6 @@ export default function(state = INITIAL_STATE, action){
 			}
 		case cartActionTypes.ADD_ITEM_TO_CART:
 			return {
-				...state, 
 				cartItems: addItemToCart(state.cartItems, action.payload.cartItem)
 			}
 		case cartActionTypes.REMOVE_ITEM_FROM_CART:

@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.19.1",
+    "cross-fetch": "^3.0.4",
     "firebase": "^7.5.0",
     "headroom.js": "^0.10.3",
     "node-sass": "^4.13.0",
@@ -20,6 +22,7 @@
     "sass-extract": "^2.1.0",
     "sass-extract-js": "^0.4.0",
     "sass-extract-loader": "^1.1.0",
+    "save-dev": "0.0.1-security",
     "styled-components": "^4.4.1"
   },
   "scripts": {
@@ -42,5 +45,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "sass-loader": "^8.0.2"
   }
 }

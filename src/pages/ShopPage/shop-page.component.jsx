@@ -17,14 +17,10 @@ class ShopPage extends React.Component {
 		return (
 			<div className="shop-page">
 				<Route exact path={`${this.props.match.path}`} render={(props) => {
-					return <CollectionOverview isLoading={!!this.props.collections} {...props} />
+					return <CollectionOverview {...props} isLoading={!(!!this.props.collections)}  />
 				}} />
 				<Route exact path={`${this.props.match.path}/:category`} render={(props) => {
-					return <CategoryPage {...props} isLoading={() => {
-						console.log(this.props.collections)
-						return !!this.props.collections
-
-					}}  />
+					return <CategoryPage {...props} isLoading={!(!!this.props.collections)}  />
 				}} />
 			</div>
 		)

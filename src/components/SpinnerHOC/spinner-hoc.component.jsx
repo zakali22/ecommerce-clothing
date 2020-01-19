@@ -21,7 +21,7 @@ console.log(theme)
 const SpinnerHOC = (WrappedComponent) => {
 	const withSpinner = (props) => {
 		const {isLoading, ...otherProps} = props;
-		console.log(otherProps)
+		console.log(isLoading, otherProps.collections)
 		return (
 			isLoading ? (
 				<ThemeProvider theme={theme}>

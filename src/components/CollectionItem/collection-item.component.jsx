@@ -2,6 +2,7 @@ import React from "react"
 import CustomButton from "../CustomButton/custom-button.component.jsx"
 
 import {addItemToCart, toggleCartDropdown, getTotalBalanceInCart} from "../../redux/cart/cart.actions"
+import {fetchCollectionStartAsync} from "../../redux/collections/collections.actions"
 import {connect} from "react-redux"
 
 import "./collection-item.styles.scss"
@@ -20,6 +21,7 @@ const CollectionItem = ({id, name, imageUrl, price, ...restOfProps}) => {
 							console.log("Clicked")
 							restOfProps.addItemToCart(cartItem)
 							restOfProps.getTotalBalanceInCart()
+							restOfProps.fetchCollectionStartAsync()
 						}}
 						/>
 				</div>
@@ -35,7 +37,8 @@ const CollectionItem = ({id, name, imageUrl, price, ...restOfProps}) => {
 const mapDispatchToProps = dispatch => ({
 	addItemToCart: (cartItem) => dispatch(addItemToCart(cartItem)),
 	toggleCartDropdown: () => dispatch(toggleCartDropdown()),
-	getTotalBalanceInCart: () => dispatch(getTotalBalanceInCart())
+	getTotalBalanceInCart: () => dispatch(getTotalBalanceInCart()),
+	fetchCollectionStartAsync: () => dispatch(fetchCollectionStartAsync())
 })
 
 export default connect(null, mapDispatchToProps)(CollectionItem)
